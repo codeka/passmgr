@@ -1,0 +1,22 @@
+{
+  "name": "passmgr",
+  "version": "0.1.0",
+  "description": "Codeka Password Manager",
+  "main": "dist/browser/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeka/passmgr.git"
+  },
+  "author": "Dean Harding <dean@codeka.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeka/passmgr/issues"
+  },
+  "homepage": "https://github.com/codeka/passmgr#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
