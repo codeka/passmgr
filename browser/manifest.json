@@ -17,6 +17,7 @@
       "32": "img/icon32.png",
       "48": "img/icon48.png",
       "64": "img/icon64.png"
-    }
+    },
+    "default_popup": "popup.html"
   }
 }
