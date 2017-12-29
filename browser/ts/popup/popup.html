@@ -1,16 +1,25 @@
 <div class="content">
-  <h1>Popup</h1>
+  <mat-toolbar class="mat-elevation-z2">
+    <form>
+      <mat-form-field [floatLabel]="'never'">
+        <input matInput placehold="Search">
+        <mat-placeholder>
+          <mat-icon>search</mat-icon>
+          {{ browser.i18n.getMessage("popup_menu_search_prompt") }}
+        </mat-placeholder>
+      </mat-form-field>
+    </form>
+  </mat-toolbar>
   <mat-nav-list>
     <a mat-list-item>
       <img matListIcon src="/img/gen-password.svg" width="32" height="32"/>
-      <p matLine>Generate password</p>
+      <p matLine>{{ browser.i18n.getMessage("popup_menu_generate_password") }}</p>
       <mat-icon>keyboard_arrow_right</mat-icon>
     </a>
   </mat-nav-list>
   <mat-divider></mat-divider>
   <mat-nav-list>
-    <a mat-list-item><p matLine>Preferences</p></a>
-    <a mat-list-item><p matLine>Help</p></a>
+    <a mat-list-item><p matLine>{{ browser.i18n.getMessage("popup_menu_preferences") }}</p></a>
+    <a mat-list-item><p matLine>{{ browser.i18n.getMessage("popup_menu_help") }}</p></a>
   </mat-nav-list>
-  <button mat-button>A button</button>
 </div>

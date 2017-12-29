@@ -1,6 +1,18 @@
 {
-  "hello": {
-    "message": "World",
-    "description": "testing"
+  "popup_menu_generate_password": {
+    "message": "Generate password",
+    "description": "Menu item in the popup to generate a new password."
+  },
+  "popup_menu_preferences": {
+    "message": "Preferences",
+    "description": "Menu item in the popup to open the preferences page."
+  },
+  "popup_menu_help": {
+    "message": "Help",
+    "description": "Menu item in the popup to open the help page."
+  },
+  "popup_menu_search_prompt": {
+    "message": "Search vault",
+    "description": "Prompt in the search box in the popup menu."
   }
 }

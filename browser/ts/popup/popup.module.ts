@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MatButtonModule, MatIconModule, MatListModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatListModule, MatToolbarModule} from '@angular/material';
 
 import {PopupComponent} from './popup';
 
@@ -14,8 +14,11 @@ import {PopupComponent} from './popup';
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [PopupComponent]

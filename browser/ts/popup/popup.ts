@@ -6,6 +6,8 @@ import {Component} from '@angular/core';
   styles: [require('./popup.css')]
 })
 export class PopupComponent {
+  browser = browser;
+
   constructor() {
   }
 }

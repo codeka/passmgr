@@ -1,3 +1,7 @@
 div.content {
   width: 240pt;
 }
+
+form, mat-form-field {
+  width: 100%;
+}
