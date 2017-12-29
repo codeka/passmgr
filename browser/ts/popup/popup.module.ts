@@ -1,14 +1,25 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule, Routes} from '@angular/router';
 
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatListModule, MatToolbarModule} from '@angular/material';
 
-import {PopupComponent} from './popup';
+import {AppComponent} from './app';
+
+import {MainMenuComponent} from './main_menu'
+import {GeneratePasswordComponent} from './generate_password'
+
+const ROUTES: Routes = [
+  { path: '', component: MainMenuComponent },
+  { path: 'generate-password', component: GeneratePasswordComponent },
+]
 
 @NgModule({
   declarations: [
-    PopupComponent
+    AppComponent,
+    GeneratePasswordComponent,
+    MainMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,9 +29,10 @@ import {PopupComponent} from './popup';
     MatInputModule,
     MatIconModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
-  bootstrap: [PopupComponent]
+  bootstrap: [AppComponent]
 })
 export class PopupModule { }

@@ -5,8 +5,7 @@ const webpack = require('webpack');
 
 const deployRoot = path.resolve(path.join(__dirname, '../deploy'));
 
-gulp.task('default', () => {
-  // copy the (non-JS) browser files to the deploy folder.
+gulp.task('copy-browser-static-files', () => {
   gulp.src(['browser/**/*', '!browser/**/*.js', '!browser/**/*.ts'])
     .pipe(gulp.dest('../deploy/browser/'));
 
@@ -17,7 +16,9 @@ gulp.task('default', () => {
     .pipe(gulp.dest('../deploy/browser/js'));
   gulp.src(['node_modules/@angular/material/prebuilt-themes/indigo-pink.css'])
     .pipe(gulp.dest('../deploy/browser/css/material'));
+});
 
+gulp.task('build-browser', (cb) => {
   webpack({
     entry: './browser/ts/popup_main.ts',
     output: {
@@ -42,8 +43,14 @@ gulp.task('default', () => {
     externals: {},
   }, (err, stats) => {
     if (err) {
-      throw new gutil.PluginError('webpack', err);
+      cb(err);
     }
     gutil.log('[webpack]', stats.toString('minimal'));
+    cb();
   });
+});
+
+gulp.task('default', ['copy-browser-static-files', 'build-browser'], () => {
+  gulp.watch(['browser/**/*', '!browser/**/*.js', '!browser/**/*.ts'], ['copy-browser-static-files']);
+  gulp.watch(['browser/**/*.ts'], ['build-browser']);
 });

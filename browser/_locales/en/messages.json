@@ -14,5 +14,10 @@
   "popup_menu_search_prompt": {
     "message": "Search vault",
     "description": "Prompt in the search box in the popup menu."
+  },
+
+  "popup_genpasswd_title": {
+    "message": "Generate password",
+    "description": "The title of the 'generate password' page in the popup."
   }
 }
