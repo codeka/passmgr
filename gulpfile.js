@@ -10,8 +10,12 @@ gulp.task('default', function() {
   gulp.src(["browser/**/*", "!browser/**/*.js", "!browser/**/*.ts"])
       .pipe(gulp.dest("../deploy/browser/"));
 
-  gulp.src(["node_modules/zone.js/dist/zone.js"])
+  gulp.src([
+          "node_modules/zone.js/dist/zone.js",
+          "node_modules/web-animations-js/web-animations.min.js"])
       .pipe(gulp.dest("../deploy/browser/js"));
+  gulp.src(["node_modules/@angular/material/prebuilt-themes/indigo-pink.css"])
+      .pipe(gulp.dest("../deploy/browser/css/material"));
 
   // build the js files
   webpack({
@@ -27,7 +31,9 @@ gulp.task('default', function() {
     },
     module: {
       loaders: [
-        { test: /\.tsx?$/, loader: "ts-loader" }
+        { test: /\.tsx?$/, loader: "ts-loader" },
+        { test: /\.html$/, loader: 'html-loader' },
+        { test: /\.css$/, loader: 'raw-loader' }
       ],
     },
     plugins: [
