@@ -1,7 +1,13 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
+const mocha = require('gulp-mocha');
 const path = require('path');
 const webpack = require('webpack');
+
+// Some intersting tasks:
+//
+// gulp      - build the app and monitor for changes to rebuild.
+// gulp test - run unit tests.
 
 const deployRoot = path.resolve(path.join(__dirname, '../deploy'));
 
@@ -53,4 +59,11 @@ gulp.task('build-browser', (cb) => {
 gulp.task('default', ['copy-browser-static-files', 'build-browser'], () => {
   gulp.watch(['browser/**/*', '!browser/**/*.js', '!browser/**/*.ts'], ['copy-browser-static-files']);
   gulp.watch(['browser/**/*.ts'], ['build-browser']);
+});
+
+gulp.task('test', () => {
+  return gulp.src(['**/*.spec.ts'], { read: false })
+    .pipe(mocha({
+      require: 'ts-node/register',
+    }));
 });
