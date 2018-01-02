@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {PasswordGenerator, PasswordGenerateOptions} from "../core/password_generator";
+import {PasswordGenerator, PasswordGenerateOptions} from 'core/password_generator';
 
 @Component({
   selector: 'generate-password',

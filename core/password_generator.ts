@@ -1,5 +1,4 @@
 
-
 /**
  * An interface for generating random numbers. The default implementation just uses window.crypto.
  */

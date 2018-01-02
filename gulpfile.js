@@ -33,7 +33,10 @@ gulp.task('build-browser', (cb) => {
     },
     devtool: 'sourcemap',
     resolve: {
-      extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+      extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+      alias: {
+        core: `${__dirname}/core`,
+      }
     },
     module: {
       loaders: [
