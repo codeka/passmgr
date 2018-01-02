@@ -1,2 +1,6 @@
 # Node stuff.
 node_modules/
+
+# Mocha/test stuff
+coverage/
+.nyc_output/
