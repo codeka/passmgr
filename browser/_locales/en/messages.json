@@ -1,4 +1,8 @@
 {
+  "popup_menu_open_vault": {
+    "message": "Open vault",
+    "description": "Menu item in the popup to open the vault."
+  },
   "popup_menu_generate_password": {
     "message": "Generate password",
     "description": "Menu item in the popup to generate a new password."

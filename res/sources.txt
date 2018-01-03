@@ -1,0 +1,2 @@
+gen-password.svg: https://thenounproject.com/term/reset-password/1037766/
+vault.svg: https://thenounproject.com/term/database-encryption/992709/

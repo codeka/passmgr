@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z2">
+<mat-nav-list><mat-toolbar class="mat-elevation-z2">
   <form>
     <mat-form-field [floatLabel]="'never'">
       <input matInput placehold="Search">
@@ -9,9 +9,12 @@
     </mat-form-field>
   </form>
 </mat-toolbar>
-<mat-nav-list>
+  <a mat-list-item (click)="openVault()">
+    <img matListIcon src="/img/vault.svg" width="24" height="24"/>
+    <p matLine>{{ browser.i18n.getMessage("popup_menu_open_vault") }}</p>
+  </a>
   <a mat-list-item [routerLink]="['generate-password']">
-    <img matListIcon src="/img/gen-password.svg" width="32" height="32"/>
+    <img matListIcon src="/img/gen-password.svg" width="24" height="24"/>
     <p matLine>{{ browser.i18n.getMessage("popup_menu_generate_password") }}</p>
     <mat-icon>keyboard_arrow_right</mat-icon>
   </a>

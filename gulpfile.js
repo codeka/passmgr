@@ -25,10 +25,13 @@ gulp.task('copy-browser-static-files', () => {
 
 gulp.task('build-browser', (cb) => {
   webpack({
-    entry: './browser/ts/popup_main.ts',
+    entry: {
+      popup: ['./browser/ts/popup_main.ts'],
+      vault: ['./browser/ts/vault_main.ts'],
+    },
     output: {
       path: path.join(deployRoot, 'browser/js'),
-      filename: 'popup_bundle.js',
+      filename: '[name]_bundle.js',
       pathinfo: true,
     },
     devtool: 'sourcemap',

@@ -8,6 +8,7 @@ import {Component} from '@angular/core';
 export class MainMenuComponent {
   browser = browser;
 
-  constructor() {
+  openVault(): void {
+    browser.tabs.create({ url: "vault.html" });
   }
 }
