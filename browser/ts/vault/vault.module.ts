@@ -15,7 +15,7 @@ import {
 
 import {AppComponent} from './app';
 import {SettingsComponent} from './settings';
-import {SiteAddComponent} from './site_add';
+import {SiteEditDialogComponent} from './site_edit_dialog';
 import {SiteListComponent} from './site_list';
 
 const ROUTES: Routes = [
@@ -28,7 +28,7 @@ const ROUTES: Routes = [
   declarations: [
     AppComponent,
     SettingsComponent,
-    SiteAddComponent,
+    SiteEditDialogComponent,
     SiteListComponent,
   ],
   imports: [
@@ -46,8 +46,8 @@ const ROUTES: Routes = [
       useHash: true /* because extensions windows don't like the path location strategy */
     })
   ],
-  exports: [SiteAddComponent],
-  entryComponents: [SiteAddComponent],
+  exports: [SiteEditDialogComponent],
+  entryComponents: [SiteEditDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

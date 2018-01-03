@@ -1,0 +1,21 @@
+
+div.mat-dialog-actions {
+  display: flex;
+}
+
+div.spacer {
+  flex-grow: 1;
+}
+
+mat-form-field  {
+  width: 100%;
+}
+
+mat-form-field.half-left {
+  width: 49%;
+}
+
+mat-form-field.half-right {
+  width: 49%;
+  margin-left: 2%;
+}

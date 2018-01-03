@@ -1,4 +1,13 @@
 {
+  "save": {
+    "message": "Save",
+    "description": "Generic action button for 'saving' current item."
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Generic action button for 'cancelling' current operation."
+  },
+
   "popup_menu_open_vault": {
     "message": "Open vault",
     "description": "Menu item in the popup to open the vault."
@@ -23,5 +32,39 @@
   "popup_genpasswd_title": {
     "message": "Generate password",
     "description": "The title of the 'generate password' page in the popup."
+  },
+
+  "vault_menu_sites": {
+    "message": "Sites",
+    "description": "The 'sites' entry on the left-hand main menu."
+  },
+  "vault_menu_settings": {
+    "message": "Settings",
+    "description": "The 'settings' entry on the left-hand main menu."
+  },
+
+  "site_edit_title_add": {
+    "message": "Add site",
+    "description": "The title of the 'edit site' dialog when we're actually adding a site."
+  },
+  "site_edit_name": {
+    "message": "Name",
+    "description": "The placeholder for the site's name."
+  },
+  "site_edit_url": {
+    "message": "URL",
+    "description": "The placeholder for the site's URL."
+  },
+  "site_edit_username": {
+    "message": "Username",
+    "description": "The placeholder for the username associated with this site."
+  },
+  "site_edit_password": {
+    "message": "Password",
+    "description": "The placeholder for the password associated with this site."
+  },
+  "site_edit_notes": {
+    "message": "Notes",
+    "description": "The placeholder for the notes field for this site."
   }
 }

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>{{ browser.i18n.getMessage("site_edit_title_add") }}</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_name') }}">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_url') }}">
+    </mat-form-field>
+
+    <mat-form-field class="half-left">
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_username') }}">
+    </mat-form-field><mat-form-field class="half-right">
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_password') }}" [type]="hidePassword ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="{{ browser.i18n.getMessage('site_edit_notes') }}" rows="4"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <div class="spacer"></div>
+  <button mat-raised-button [mat-dialog-close]="">{{ browser.i18n.getMessage("cancel") }}</button>
+  <button mat-raised-button [mat-dialog-close]="1" color="primary">{{ browser.i18n.getMessage("save") }}</button>
+</div>

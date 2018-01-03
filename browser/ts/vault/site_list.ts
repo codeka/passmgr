@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialog} from '@angular/material';
 
-import {SiteAddComponent} from './site_add';
+import {SiteEditDialogComponent} from './site_edit_dialog';
 
 @Component({
   selector: 'site-list',
@@ -15,8 +15,7 @@ export class SiteListComponent {
   }
 
   showAddSite(): void {
-    const dialogRef = this.dialog.open(SiteAddComponent, {
-      height: '400px',
+    const dialogRef = this.dialog.open(SiteEditDialogComponent, {
       width: '600px',
     });
     dialogRef.afterClosed().subscribe(result => {
