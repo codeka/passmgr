@@ -21,7 +21,9 @@ function log() {
   for (let i = 0; i < arguments.length; i += 1) {
     msg += arguments[i];
   }
-  console.log(msg);
+
+  // eslint-disable-next-line no-console
+  console.log(`[passmgr] + ${msg}`);
 }
 
 /**
@@ -39,7 +41,7 @@ function queryForCredentials(formNode) {
   // gather all of the <input> fields so we can send them all across for matching
   const formFields = [];
   const inputNodeList = formNode.getElementsByTagName('input');
-  for (let i = 0; i < inputNodeList; i += 1) {
+  for (let i = 0; i < inputNodeList.length; i += 1) {
     const inputNode = inputNodeList[i];
     formFields.push({
       fieldId: inputNode.getAttribute('id'),
@@ -48,12 +50,32 @@ function queryForCredentials(formNode) {
     });
   }
 
-  // TODO: if browser.runtime is specified, use that instead (i.e. on firefox)
-  chrome.runtime.sendMessage({
+  const msg = {
     id: 'checkForLoginForm',
     formFields
-  }, (resp) => {
-    log('    got response: ', JSON.stringify(resp));
+  };
+  log('    sending: ', JSON.stringify(msg));
+  // TODO: if browser.runtime is specified, use that instead (i.e. on firefox)
+  chrome.runtime.sendMessage(msg, (resp) => {
+    if (!resp) {
+      log('    got empy response, assuming no fields to populate.');
+      return;
+    }
+    for (let i = 0; i < resp.formFields.length; i += 1) {
+      const formField = resp.formFields[i];
+      let input = null;
+      if (formField.fieldId) {
+        input = document.getElementById(formField.fieldId);
+      } else if (formField.fieldName) {
+        input = formNode.querySelector(`input[name=${formField.fieldName}]`);
+      } else if (formField.fieldType) {
+        // This probably isn't the best there could be lots of fields of this type...
+        input = formNode.querySelector(`input[type=${formField.fieldType}]`);
+      }
+      if (input != null) {
+        input.value = formField.fieldValue;
+      }
+    }
   });
 }
 

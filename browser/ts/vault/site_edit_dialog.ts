@@ -34,7 +34,22 @@ export class SiteEditDialogComponent {
   }
 
   save() {
-    const site: UnencryptedInMemorySite = this.siteForm.value;
+    const site = new UnencryptedInMemorySite();
+    const form = this.siteForm.value as {
+      name: string,
+      url: string,
+      username: string,
+      password: string,
+      notes: string
+    };
+    site.name = form.name;
+    site.url = form.url;
+    site.notes = form.password;
+    site.formFields = [
+      { fieldName: "username", fieldValue: form.username, isUsername: true, isPassword: false },
+      { fieldName: "password", fieldValue: form.password, isUsername: false, isPassword: true },
+    ];
+
     this.store.saveSite(site)
       .then(() => {
         this.dialogRef.close();

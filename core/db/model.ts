@@ -40,6 +40,16 @@ export class FormField {
    * The value to include in the form for this field.
    */
   fieldValue: string;
+
+  /**
+   * If true, this is what we consider the 'username' field for the form.
+   */
+  isUsername: boolean;
+
+  /**
+   * If true, this is what we consider the 'password' field for the form.
+   */
+  isPassword: boolean;
 }
 
 /**
