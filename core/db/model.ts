@@ -17,11 +17,39 @@ export class SiteInfo {
   notes?: string;
 }
 
+/** When filling in a login form, we actually fill in all the fields named in this structure. */
+export class FormField {
+  /**
+   * The ID of this {@link FormField}.
+   */
+  fieldId?: string;
+
+  /**
+   * The name of the field this {@link FormField} corresponds to. If not specified, then
+   * {@link #fieldType} is used to identify the field instead.
+   */
+  fieldName?: string;
+
+  /**
+   * The type="" attribute value of this field this {@link FormField} corresponds to. This is mostly
+   * used to identify the "password" field type.
+   */
+  fieldType?: string;
+
+  /**
+   * The value to include in the form for this field.
+   */
+  fieldValue: string;
+}
+
 /**
  * Details of a site with *unencrypted* password. This is meant to be stored in memory only for
  * the short duration of time it's actually needed.
  */
 export class UnencryptedInMemorySite extends SiteInfo {
-  /** The *unencrypted* password, to log into this site. */
-  password: string;
+  /**
+   * The *unencrypted* form fields (including password!), to fill in, in order to log into this
+   * site.
+   */
+  formFields: FormField[];
 };

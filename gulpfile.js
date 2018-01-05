@@ -3,6 +3,8 @@ const gutil = require('gulp-util');
 const path = require('path');
 const webpack = require('webpack');
 
+const Uglify = require('uglifyjs-webpack-plugin');
+
 // Some intersting tasks:
 //
 // gulp      - build the app and monitor for changes to rebuild.
@@ -24,9 +26,35 @@ gulp.task('copy-browser-static-files', () => {
     .pipe(gulp.dest('../deploy/browser/css/material'));
 });
 
-gulp.task('build-browser', (cb) => {
+gulp.task('build-browser-js', (cb) => {
   webpack({
     entry: {
+      content: ['./browser/js/content.js'],
+    },
+    output: {
+      path: path.join(deployRoot, 'browser/js'),
+      filename: '[name]_bundle.js',
+      pathinfo: true,
+    },
+    devtool: 'sourcemap',
+    plugins: [
+      new webpack.LoaderOptionsPlugin({ debug: true }),
+      new Uglify()
+    ],
+  }, (err, stats) => {
+    if (err) {
+      cb(err);
+    } else {
+      gutil.log('[webpack]', stats.toString('minimal'));
+      cb();
+    }
+  });
+});
+
+gulp.task('build-browser-ts', (cb) => {
+  webpack({
+    entry: {
+      background: ['./browser/ts/background_main.ts'],
       popup: ['./browser/ts/popup_main.ts'],
       vault: ['./browser/ts/vault_main.ts'],
     },
@@ -56,13 +84,15 @@ gulp.task('build-browser', (cb) => {
   }, (err, stats) => {
     if (err) {
       cb(err);
+    } else {
+      gutil.log('[webpack]', stats.toString('minimal'));
+      cb();
     }
-    gutil.log('[webpack]', stats.toString('minimal'));
-    cb();
   });
 });
 
-gulp.task('default', ['copy-browser-static-files', 'build-browser'], () => {
+gulp.task('default', ['copy-browser-static-files', 'build-browser-ts', 'build-browser-js'], () => {
   gulp.watch(['browser/**/*', '!browser/**/*.js', '!browser/**/*.ts'], ['copy-browser-static-files']);
-  gulp.watch(['browser/**/*.ts'], ['build-browser']);
+  gulp.watch(['browser/**/*.ts'], ['build-browser-ts']);
+  gulp.watch(['browser/**/*.js'], ['build-browser-js']);
 });

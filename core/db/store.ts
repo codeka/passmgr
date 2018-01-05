@@ -55,4 +55,10 @@ export class Store {
         return tx.complete.then(() => siteInfos);
       });
   }
+
+  /** Fetch the decrypted details of the given site. */
+  getUnencryptedSite(key: number): Promise<UnencryptedInMemorySite> {
+    // TODO
+    return null;
+  }
 }
