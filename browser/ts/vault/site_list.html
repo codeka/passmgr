@@ -1,2 +1,16 @@
-<p>Site list</p>
+
+<mat-table #table [dataSource]="sites">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let site"> {{site.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+    <mat-cell *matCellDef="let site"> {{site.username}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['name', 'username']"></mat-header-row>
+  <mat-row *matRowDef="let site; columns: ['name', 'username'];"></mat-row>
+</mat-table>
+
 <a mat-fab class="fab" (click)="showAddSite()"><mat-icon aria-label="Add site">add</mat-icon></a>

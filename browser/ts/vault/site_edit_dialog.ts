@@ -1,5 +1,9 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
+import {FormControl, FormGroup} from '@angular/forms';
+
+import {Store} from 'core/db/store';
+import {UnencryptedInMemorySite} from 'core/db/model';
 
 @Component({
   selector: 'site-edit-dialog',
@@ -12,7 +16,29 @@ export class SiteEditDialogComponent {
   // Whether we should be showing or hiding the password.
   hidePassword = true;
 
-  constructor(@Inject(MatDialogRef) private dialogRef: MatDialogRef<SiteEditDialogComponent>) {
+  siteForm: FormGroup;
+
+  constructor(
+    @Inject(MatDialogRef) private dialogRef: MatDialogRef<SiteEditDialogComponent>,
+    @Inject(Store) private readonly store: Store) {
+  }
+
+  ngOnInit(): void {
+    this.siteForm = new FormGroup({
+      name: new FormControl(),
+      url: new FormControl(),
+      username: new FormControl(),
+      password: new FormControl(),
+      notes: new FormControl()
+    });
+  }
+
+  save() {
+    const site: UnencryptedInMemorySite = this.siteForm.value;
+    this.store.saveSite(site)
+      .then(() => {
+        this.dialogRef.close();
+      });
   }
 }
 

@@ -1,27 +1,27 @@
 <h1 mat-dialog-title>{{ browser.i18n.getMessage("site_edit_title_add") }}</h1>
 <div mat-dialog-content>
-  <form>
+  <form novalidate [formGroup]="siteForm" (ngSubmit)="save()">
     <mat-form-field>
-      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_name') }}">
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_name') }}" formControlName="name">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_url') }}">
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_url') }}" formControlName="url">
     </mat-form-field>
 
     <mat-form-field class="half-left">
-      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_username') }}">
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_username') }}" formControlName="username">
     </mat-form-field><mat-form-field class="half-right">
-      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_password') }}" [type]="hidePassword ? 'password' : 'text'">
+      <input matInput placeholder="{{ browser.i18n.getMessage('site_edit_password') }}" [type]="hidePassword ? 'password' : 'text'" formControlName="password">
       <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput placeholder="{{ browser.i18n.getMessage('site_edit_notes') }}" rows="4"></textarea>
+      <textarea matInput placeholder="{{ browser.i18n.getMessage('site_edit_notes') }}" rows="4" formControlName="notes"></textarea>
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
   <div class="spacer"></div>
   <button mat-raised-button [mat-dialog-close]="">{{ browser.i18n.getMessage("cancel") }}</button>
-  <button mat-raised-button [mat-dialog-close]="1" color="primary">{{ browser.i18n.getMessage("save") }}</button>
+  <button mat-raised-button (click)="save()" color="primary">{{ browser.i18n.getMessage("save") }}</button>
 </div>

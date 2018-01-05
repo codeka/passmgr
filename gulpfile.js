@@ -17,7 +17,8 @@ gulp.task('copy-browser-static-files', () => {
   gulp.src([
     'node_modules/zone.js/dist/zone.js',
     'node_modules/web-animations-js/web-animations.min.js',
-    'node_modules/webextension-polyfill/dist/browser-polyfill.min.js'])
+    'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
+    'node_modules/idb/lib/idb.js'])
     .pipe(gulp.dest('../deploy/browser/js'));
   gulp.src(['node_modules/@angular/material/prebuilt-themes/indigo-pink.css'])
     .pipe(gulp.dest('../deploy/browser/css/material'));
