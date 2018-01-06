@@ -1,2 +1,6 @@
+export.svg: https://thenounproject.com/term/export/341314/
 gen-password.svg: https://thenounproject.com/term/reset-password/1037766/
+import.svg: https://thenounproject.com/term/import/341284/
+settings.svg: https://thenounproject.com/term/settings/18125/
+sites.svg: https://thenounproject.com/term/blog/955656/
 vault.svg: https://thenounproject.com/term/database-encryption/992709/

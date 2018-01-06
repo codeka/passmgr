@@ -38,6 +38,10 @@
     "message": "Sites",
     "description": "The 'sites' entry on the left-hand main menu."
   },
+  "vault_menu_import": {
+    "message": "Import",
+    "description": "The 'Import' entry on the left-hand main menu."
+  },
   "vault_menu_settings": {
     "message": "Settings",
     "description": "The 'settings' entry on the left-hand main menu."
@@ -66,5 +70,22 @@
   "site_edit_notes": {
     "message": "Notes",
     "description": "The placeholder for the notes field for this site."
+  },
+
+  "import_source_placeholder": {
+    "message": "Source",
+    "description": "The placeholder for the 'source' select on the import screen."
+  },
+  "import_file_placeholder": {
+    "message": "File",
+    "description": "The placeholder for the 'file' field (which is read-only) on the import screen."
+  },
+  "import_file_choose": {
+    "message": "Choose",
+    "description": "The 'Choose' button for selecting the file on the import screen."
+  },
+  "import": {
+    "message": "Import",
+    "description": "Label on the import button."
   }
 }

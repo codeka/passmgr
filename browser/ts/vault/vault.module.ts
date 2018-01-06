@@ -10,13 +10,15 @@ import {
   MatInputModule,
   MatIconModule,
   MatListModule,
+  MatSelectModule,
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule} from '@angular/material';
 
-  import {DbModule} from 'core/db/db.module';
+import {DbModule} from 'core/db/db.module';
 
-  import {AppComponent} from './app';
+import {AppComponent} from './app';
+import {ImportComponent} from './import';
 import {SettingsComponent} from './settings';
 import {SiteEditDialogComponent} from './site_edit_dialog';
 import {SiteListComponent} from './site_list';
@@ -24,12 +26,14 @@ import {SiteListComponent} from './site_list';
 const ROUTES: Routes = [
   { path: 'sites', component: SiteListComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'import', component: ImportComponent },
   { path: '', redirectTo: 'sites', pathMatch: 'full' },
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
+    ImportComponent,
     SettingsComponent,
     SiteEditDialogComponent,
     SiteListComponent,
@@ -44,6 +48,7 @@ const ROUTES: Routes = [
     MatInputModule,
     MatIconModule,
     MatListModule,
+    MatSelectModule,
     MatSidenavModule,
     MatTableModule,
     MatToolbarModule,

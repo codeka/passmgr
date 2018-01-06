@@ -1,0 +1,55 @@
+
+div.form-container {
+  width: 600px;
+  margin: 10% auto 0 auto;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 2px rgbs(0, 0, 0, 0.25), 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+div.form-title {
+  display: flex;
+  align-content: center;
+  box-align: center;
+  align-items: center;
+  padding: 8px 20px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+div.form-title h1 {
+  font-size: 18pt;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+div.form-body {
+  padding: 30px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+div.file-select {
+  display: flex;
+  align-items: center;
+}
+
+div.file-select mat-form-field {
+  width: auto;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+div.actions {
+  display: flex;
+  margin-top: 20px;
+}
+
+div.spacer {
+  flex-grow: 1;
+}
+
+div.actions button {
+  margin-left: 10px;
+}

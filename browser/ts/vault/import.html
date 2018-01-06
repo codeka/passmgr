@@ -1,0 +1,26 @@
+<div class="form-container">
+  <div class="form-title">
+    <h1>Import</h1>
+  </div>
+  <div class="form-body">
+    <mat-form-field>
+      <mat-select placeholder="{{ browser.i18n.getMessage('import_source_placeholder') }}">
+        <mat-option [value]="lastpass">LastPass</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input id="file" name="file" type="file" style="display: none" (change)="updateFile()">
+    <div class="file-select">
+      <mat-form-field>
+        <input matInput readonly="true" placeholder="{{ browser.i18n.getMessage('import_file_placeholder') }}" [value]="fileName">
+      </mat-form-field>
+      <button mat-raised-button id="uploadButton" (click)="chooseFile()">
+        {{ browser.i18n.getMessage('import_file_choose') }}
+      </button>
+    </div>
+    <div class="actions">
+        <div class="spacer"></div>
+        <button mat-raised-button>{{ browser.i18n.getMessage('cancel') }}</button>
+        <button mat-raised-button color="primary">{{ browser.i18n.getMessage('import') }}</button>
+      </div>
+    </div>
+</div>

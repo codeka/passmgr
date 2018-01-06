@@ -6,8 +6,18 @@
   <mat-sidenav mode="side" opened="true" disableClose="true">
     <nav>
       <mat-nav-list>
-        <mat-list-item><a [routerLink]="['/sites']">{{ browser.i18n.getMessage("vault_menu_sites") }}</a></mat-list-item>
-        <mat-list-item><a [routerLink]="['/settings']">{{ browser.i18n.getMessage("vault_menu_settings") }}</a></mat-list-item>
+        <a mat-list-item [routerLink]="['/sites']">
+          <img matListIcon src="/img/sites.svg" width="24" height="24"/>
+          <p matLine>{{ browser.i18n.getMessage("vault_menu_sites") }}</p>
+        </a>
+        <a mat-list-item [routerLink]="['/import']">
+          <img matListIcon src="/img/import.svg" width="24" height="24"/>
+          <p matLine>{{ browser.i18n.getMessage("vault_menu_import") }}</p>
+        </a>
+        <a mat-list-item [routerLink]="['/settings']">
+          <img matListIcon src="/img/settings.svg" width="24" height="24"/>
+          <p matLine>{{ browser.i18n.getMessage("vault_menu_settings") }}</p>
+        </a>
       </mat-nav-list>
     </nav>
   </mat-sidenav>
