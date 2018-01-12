@@ -53,3 +53,7 @@ div.spacer {
 div.actions button {
   margin-left: 10px;
 }
+
+mat-progress-bar {
+  margin-top: 20px;
+}

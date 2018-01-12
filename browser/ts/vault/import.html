@@ -11,16 +11,24 @@
     <input id="file" name="file" type="file" style="display: none" (change)="updateFile()">
     <div class="file-select">
       <mat-form-field>
-        <input matInput readonly="true" placeholder="{{ browser.i18n.getMessage('import_file_placeholder') }}" [value]="fileName">
+        <input matInput
+               readonly="true"
+               placeholder="{{ browser.i18n.getMessage('import_file_placeholder') }}"
+               [value]="fileName">
       </mat-form-field>
       <button mat-raised-button id="uploadButton" (click)="chooseFile()">
         {{ browser.i18n.getMessage('import_file_choose') }}
       </button>
     </div>
+    <mat-progress-bar [value]="progress"
+                      [mode]="progressMode"
+                      style="display: none;"></mat-progress-bar>
     <div class="actions">
         <div class="spacer"></div>
         <button mat-raised-button>{{ browser.i18n.getMessage('cancel') }}</button>
-        <button mat-raised-button color="primary">{{ browser.i18n.getMessage('import') }}</button>
+        <button mat-raised-button
+                color="primary"
+                (click)="import()">{{ browser.i18n.getMessage('import') }}</button>
       </div>
     </div>
 </div>

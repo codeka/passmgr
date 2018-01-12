@@ -7,6 +7,10 @@
     "message": "Cancel",
     "description": "Generic action button for 'cancelling' current operation."
   },
+  "close": {
+    "message": "Close",
+    "description": "Generic action button for 'closing' something."
+  },
 
   "popup_menu_open_vault": {
     "message": "Open vault",

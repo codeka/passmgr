@@ -10,8 +10,10 @@ import {
   MatInputModule,
   MatIconModule,
   MatListModule,
+  MatProgressBarModule,
   MatSelectModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatTableModule,
   MatToolbarModule} from '@angular/material';
 
@@ -48,8 +50,10 @@ const ROUTES: Routes = [
     MatInputModule,
     MatIconModule,
     MatListModule,
+    MatProgressBarModule,
     MatSelectModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatTableModule,
     MatToolbarModule,
     ReactiveFormsModule,
