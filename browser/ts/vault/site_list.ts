@@ -45,4 +45,14 @@ export class SiteListComponent {
       console.log(`Dialog result: ${result}`); // Pizza!
     });
   }
+
+  rowClick(site: SiteInfo): void {
+    const dialogRef = this.dialog.open(SiteEditDialogComponent, {
+      width: '600px',
+      data: site,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`); // Pizza!
+    });
+  }
 }

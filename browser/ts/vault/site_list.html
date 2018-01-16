@@ -10,7 +10,7 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="['name', 'username']"></mat-header-row>
-  <mat-row *matRowDef="let site; columns: ['name', 'username'];"></mat-row>
+  <mat-row *matRowDef="let site; columns: ['name', 'username'];" (click)="rowClick(site)"></mat-row>
 </mat-table>
 
 <a mat-fab class="fab" (click)="showAddSite()"><mat-icon aria-label="Add site">add</mat-icon></a>

@@ -1,9 +1,9 @@
 import {Component, Inject} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms';
 
 import {Store} from 'core/db/store';
-import {UnencryptedInMemorySite} from 'core/db/model';
+import {UnencryptedInMemorySite, SiteInfo} from 'core/db/model';
 
 @Component({
   selector: 'site-edit-dialog',
@@ -19,6 +19,7 @@ export class SiteEditDialogComponent {
   siteForm: FormGroup;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) private readonly data: SiteInfo,
     @Inject(MatDialogRef) private dialogRef: MatDialogRef<SiteEditDialogComponent>,
     @Inject(Store) private readonly store: Store) {
   }
@@ -31,6 +32,15 @@ export class SiteEditDialogComponent {
       password: new FormControl(),
       notes: new FormControl()
     });
+    if (this.data != null) {
+      this.siteForm.setValue({
+        "name": this.data.name,
+        "url": this.data.url,
+        "username": this.data.username,
+        "password": "",
+        "notes": this.data.notes == null ? "" : this.data.notes,
+      });
+    }
   }
 
   save() {
