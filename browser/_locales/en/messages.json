@@ -38,6 +38,23 @@
     "description": "The title of the 'generate password' page in the popup."
   },
 
+  "master_password_title": {
+    "message": "Enter master password",
+    "description": "Title of the prompt for entering your master password."
+  },
+  "master_password_login": {
+    "message": "Sign in",
+    "descrption": "The button that we use to initiate decrypting of sites."
+  },
+  "master_password_password_prompt": {
+    "message": "Master password",
+    "description": "The prompt for the actual password field."
+  },
+  "master_password_valid_for": {
+    "message": "Valid for",
+    "description": "Amount of time to keep the CryptoKey decrypted in memory."
+  },
+
   "vault_menu_sites": {
     "message": "Sites",
     "description": "The 'sites' entry on the left-hand main menu."

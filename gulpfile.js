@@ -94,5 +94,6 @@ gulp.task('build-browser-ts', (cb) => {
 gulp.task('default', ['copy-browser-static-files', 'build-browser-ts', 'build-browser-js'], () => {
   gulp.watch(['browser/**/*', '!browser/**/*.js', '!browser/**/*.ts'], ['copy-browser-static-files']);
   gulp.watch(['browser/**/*.ts'], ['build-browser-ts']);
+  gulp.watch(['core/**/*.ts'], ['build-browser-ts']);
   gulp.watch(['browser/**/*.js'], ['build-browser-js']);
 });

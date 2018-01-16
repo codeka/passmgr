@@ -1,5 +1,10 @@
 import { Store } from "core/db/store";
 import { FormField, SiteInfo, UnencryptedInMemorySite } from "core/db/model";
+import { MasterPasswordManager } from "./master_password_manager";
+
+import { MasterPasswordTimeResponse, DeriveMasterKeyRequest } from "./api";
+
+const masterPasswordManager = new MasterPasswordManager();
 
 /**
  * This is the main entry-point for the background script.
@@ -12,8 +17,15 @@ function onMessage(
     request: any,
     sender: browser.runtime.MessageSender,
     sendResponse: (response: object) => void): Promise<any> {
+  console.log("got message: " + JSON.stringify(request));
   if (sender.tab && request.id == "checkForLoginForm") {
     return checkForLoginForm(sender, request);
+  } else if (request.id == "getMasterPasswordTime") {
+    return getMasterPasswordTime(sender);
+  } else if (request.id == "deriveMasterKey") {
+    return deriveMasterKey(sender, request);
+  } else {
+    console.log("Unknown request: " + JSON.stringify(request));
   }
   return null;
 }
@@ -43,6 +55,22 @@ function checkForLoginForm(
         }
       });
 }
+
+function getMasterPasswordTime(
+  sender: browser.runtime.MessageSender) : Promise<MasterPasswordTimeResponse> {
+  // TODO: implement this!
+  return Promise.resolve({
+      isCached: false,
+      timeRemaining: 0
+    });
+}
+
+function deriveMasterKey(
+    sender: browser.runtime.MessageSender, request: DeriveMasterKeyRequest): Promise<CryptoKey> {
+  console.log("deriving master key...");
+  return masterPasswordManager.deriveKey(request.masterPassword, request.validForSeconds);
+}
+
 
 /**
  * Returns true if the given form on the actual pages matches the field we've saved for this site.
@@ -103,6 +131,7 @@ function populateFormFields(
 
 export class Background {
   static init(): void {
+    console.log("init");
     browser.runtime.onMessage.addListener(onMessage);
   }
 }

@@ -21,6 +21,16 @@
 </mat-nav-list>
 <mat-divider></mat-divider>
 <mat-nav-list>
+  <a mat-list-item *ngIf="isMasterPasswordValid">
+    <p matLine>Already logged in</p>
+  </a>
+  <a mat-list-item *ngIf="!isMasterPasswordValid" [routerLink]="['enter-master-password']">
+    <p matLine>Decrypt sites</p>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </a>
+</mat-nav-list>
+<mat-divider></mat-divider>
+<mat-nav-list>
   <a mat-list-item><p matLine>{{ browser.i18n.getMessage("popup_menu_preferences") }}</p></a>
   <a mat-list-item><p matLine>{{ browser.i18n.getMessage("popup_menu_help") }}</p></a>
 </mat-nav-list>
