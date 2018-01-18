@@ -62,7 +62,7 @@ export class Crypto {
     const iv = data.subarray(0, 16);
     const cypher = data.subarray(16);
     return new Promise((resolve, reject) => {
-      crypto.subtle.decrypt({name: "AES-CBC", iv}, key, cypher)
+      (crypto.subtle.decrypt({name: "AES-CBC", iv}, key, cypher) as Promise<ArrayBuffer>)
         .then((plaintext) => {
           const json = new TextDecoder().decode(plaintext);
           try {
@@ -73,6 +73,9 @@ export class Crypto {
             reject("Error decrypting.");
           }
         })
+        .catch((e) => {
+          reject("Error decrypting.");
+        });
     });
   }
 }
