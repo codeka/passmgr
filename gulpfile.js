@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const path = require('path');
 const webpack = require('webpack');
+const webpackConfig = require('./webpack.base.config');
 
 const Uglify = require('uglifyjs-webpack-plugin');
 
@@ -27,7 +28,7 @@ gulp.task('copy-browser-static-files', () => {
 });
 
 gulp.task('build-browser-js', (cb) => {
-  webpack({
+  webpack(webpackConfig.merge({
     entry: {
       content: ['./browser/js/content.js'],
     },
@@ -36,12 +37,10 @@ gulp.task('build-browser-js', (cb) => {
       filename: '[name]_bundle.js',
       pathinfo: true,
     },
-    devtool: 'sourcemap',
     plugins: [
-      new webpack.LoaderOptionsPlugin({ debug: true }),
-      new Uglify()
-    ],
-  }, (err, stats) => {
+      new Uglify(),
+    ]
+  }), (err, stats) => {
     if (err) {
       cb(err);
     } else {
@@ -52,7 +51,7 @@ gulp.task('build-browser-js', (cb) => {
 });
 
 gulp.task('build-browser-ts', (cb) => {
-  webpack({
+  webpack(webpackConfig.merge({
     entry: {
       background: ['./browser/ts/background_main.ts'],
       popup: ['./browser/ts/popup_main.ts'],
@@ -63,25 +62,7 @@ gulp.task('build-browser-ts', (cb) => {
       filename: '[name]_bundle.js',
       pathinfo: true,
     },
-    devtool: 'sourcemap',
-    resolve: {
-      extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-      alias: {
-        core: `${__dirname}/core`,
-      }
-    },
-    module: {
-      loaders: [
-        { test: /\.tsx?$/, loader: 'ts-loader' },
-        { test: /\.html$/, loader: 'html-loader' },
-        { test: /\.css$/, loader: 'raw-loader' }
-      ],
-    },
-    plugins: [
-      new webpack.LoaderOptionsPlugin({ debug: true }),
-    ],
-    externals: {},
-  }, (err, stats) => {
+  }), (err, stats) => {
     if (err) {
       cb(err);
     } else {
