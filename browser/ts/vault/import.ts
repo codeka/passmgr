@@ -1,12 +1,12 @@
-import {Component, Inject, ViewChild, ElementRef} from '@angular/core';
+import {Component, Inject, ElementRef} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 import {Observable} from 'rxjs';
 import {Observer} from 'rxjs';
 
-import * as parse from 'csv-parse';
+import * as csvParse from 'csv-parse';
 
-import {UnencryptedInMemorySite, FormField} from 'core/db/model';
+import {UnencryptedInMemorySite} from 'core/db/model';
 import {Store} from 'core/db/store';
 
 class ImportResult {
@@ -21,8 +21,8 @@ interface Importer {
 
 class LastPassImporter implements Importer {
   parse(contents: string): Observable<ImportResult> {
-    return Observable.create((observer: Observer<ImportResult>) => {
-      parse(contents, {
+    return new Observable((observer: Observer<ImportResult>) => {
+      csvParse(contents, {
         columns: true,
       }, (err: any, output: Array<any>) => {
         if (err) {
@@ -49,6 +49,15 @@ class LastPassImporter implements Importer {
         }
       });
     });
+  }
+}
+
+class BitWardenJsonImporter implements Importer {
+  parse(contents: string): Observable<ImportResult> {
+    return new Observable((observer: Observer<ImportResult>) => {
+      // TODO: implement me!
+      return null;
+    })
   }
 }
 

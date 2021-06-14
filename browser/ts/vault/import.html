@@ -4,8 +4,9 @@
   </div>
   <div class="form-body">
     <mat-form-field>
-      <mat-select placeholder="{{ browser.i18n.getMessage('import_source_placeholder') }}">
+      <mat-select id="source" placeholder="{{ browser.i18n.getMessage('import_source_placeholder') }}">
         <mat-option [value]="lastpass">LastPass</mat-option>
+        <mat-option [value]="bitwarden-json">Bitwarden (Json)</mat-option>
       </mat-select>
     </mat-form-field>
     <input id="file" name="file" type="file" style="display: none" (change)="updateFile()">
