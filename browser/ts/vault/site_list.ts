@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {DataSource} from '@angular/cdk/collections';
-import {Observable} from 'rxjs/Observable';
+import {from, Observable} from 'rxjs';
 import 'rxjs/add/observable/fromPromise';
 
 import {Store} from 'core/db/store';
@@ -34,7 +34,7 @@ export class SiteListComponent {
   constructor(
       @Inject(MatDialog) private readonly dialog: MatDialog,
       @Inject(Store) store: Store) {
-    this.sites = new SiteListDataSource(Observable.fromPromise(store.listSites()));
+    this.sites = new SiteListDataSource(from(store.listSites()));
   }
 
   showAddSite(): void {

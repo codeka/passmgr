@@ -20,8 +20,7 @@ gulp.task('copy-browser-static-files', () => {
   gulp.src([
     'node_modules/zone.js/dist/zone.js',
     'node_modules/web-animations-js/web-animations.min.js',
-    'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
-    'node_modules/idb/lib/idb.js'])
+    'node_modules/webextension-polyfill/dist/browser-polyfill.min.js'])
     .pipe(gulp.dest('../deploy/browser/js'));
   gulp.src(['node_modules/@angular/material/prebuilt-themes/indigo-pink.css'])
     .pipe(gulp.dest('../deploy/browser/css/material'));
@@ -29,6 +28,7 @@ gulp.task('copy-browser-static-files', () => {
 
 gulp.task('build-browser-js', (cb) => {
   webpack(webpackConfig.merge({
+    mode: 'development',
     entry: {
       content: ['./browser/js/content.js'],
     },
@@ -52,6 +52,7 @@ gulp.task('build-browser-js', (cb) => {
 
 gulp.task('build-browser-ts', (cb) => {
   webpack(webpackConfig.merge({
+    mode: 'development',
     entry: {
       background: ['./browser/ts/background_main.ts'],
       popup: ['./browser/ts/popup_main.ts'],
@@ -72,9 +73,9 @@ gulp.task('build-browser-ts', (cb) => {
   });
 });
 
-gulp.task('default', ['copy-browser-static-files', 'build-browser-ts', 'build-browser-js'], () => {
-  gulp.watch(['browser/**/*', '!browser/**/*.js', '!browser/**/*.ts'], ['copy-browser-static-files']);
-  gulp.watch(['browser/**/*.ts'], ['build-browser-ts']);
-  gulp.watch(['core/**/*.ts'], ['build-browser-ts']);
-  gulp.watch(['browser/**/*.js'], ['build-browser-js']);
-});
+gulp.task('default', gulp.parallel('copy-browser-static-files', 'build-browser-ts', 'build-browser-js', () => {
+  gulp.watch(['browser/**/*', '!browser/**/*.js', '!browser/**/*.ts'], gulp.series('copy-browser-static-files'));
+  gulp.watch(['browser/**/*.ts'], gulp.series('build-browser-ts'));
+  gulp.watch(['core/**/*.ts'], gulp.series('build-browser-ts'));
+  gulp.watch(['browser/**/*.js'], gulp.series('build-browser-js'));
+}));

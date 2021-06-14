@@ -1,8 +1,8 @@
 import {Component, Inject, ViewChild, ElementRef} from '@angular/core';
-import {MatProgressBar, MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
+import {Observable} from 'rxjs';
+import {Observer} from 'rxjs';
 
 import * as parse from 'csv-parse';
 
@@ -89,7 +89,7 @@ export class ImportComponent {
 
     const reader = new FileReader();
     reader.onload = (f) => {
-      const contents = reader.result;
+      const contents = reader.result as string;
 
       // TODO: support other importer types
       const importer = new LastPassImporter();

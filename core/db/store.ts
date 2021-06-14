@@ -1,6 +1,4 @@
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { Observable } from "rxjs/Observable";
-import { DB } from "idb";
+import { IDBPDatabase, openDB } from "idb/with-async-ittr.js";
 import "idb";
 
 import { UnencryptedInMemorySite, SiteInfo } from "./model";
@@ -13,15 +11,17 @@ import { UnencryptedInMemorySite, SiteInfo } from "./model";
  * https://github.com/jakearchibald/idb
  */
 export class Store {
-  private db: Promise<DB>;
+  private db: Promise<IDBPDatabase>;
   private siteStore: Promise<IDBObjectStore>;
 
   constructor() {
-    this.db = idb.open("db", 1, (db) => {
-      // Note: all these cases fall through
-      switch (db.oldVersion) {
-        case 0:
-          db.createObjectStore("sites", {autoIncrement: true});
+    this.db = openDB("db", 1, {
+      upgrade(db, oldVersion, newVersion, transaction) {
+        // Note: all these cases fall through
+        switch (oldVersion) {
+          case 0:
+            db.createObjectStore("sites", {autoIncrement: true});
+        }
       }
     });
   }
@@ -40,19 +40,18 @@ export class Store {
 
   listSites(): Promise<SiteInfo[]> {
     return this.db
-      .then((db) => {
+      .then(async (db) => {
         const tx = db.transaction(["sites"]);
         let siteInfos: SiteInfo[] = [];
-        tx.objectStore("sites").iterateCursor((c) => {
+        for await (const c of tx.objectStore("sites")) {
           if (!c) {
-            return;
+            return [];
           }
 
           siteInfos.push(c.value as UnencryptedInMemorySite);
-          c.continue();
-        });
+        }
 
-        return tx.complete.then(() => siteInfos);
+        return siteInfos;
       });
   }
 

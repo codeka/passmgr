@@ -2,23 +2,28 @@ const _ = require('lodash');
 const webpack = require('webpack');
 
 const defaults = {
-  devtool: 'sourcemap',
+  devtool: 'source-map',
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
     alias: {
       core: `${__dirname}/core`,
+    },
+    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+    fallback: {
+      'stream': require.resolve('stream-browserify'),
+      'buffer': require.resolve('buffer/'),
     }
   },
   module: {
-    loaders: [
-      { test: /\.tsx?$/, loader: 'ts-loader' },
-      { test: /\.html$/, loader: 'html-loader' },
-      { test: /\.css$/, loader: 'raw-loader' }
+    rules: [
+      { test: /\.tsx?$/, use: 'ts-loader' },
+      { test: /\.html$/, use: 'html-loader' },
+      { test: /\.css$/, use: 'raw-loader' }
     ],
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({ debug: true }),
   ],
+  
 };
 
 module.exports.defaults = defaults;
