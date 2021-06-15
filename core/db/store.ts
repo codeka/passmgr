@@ -20,7 +20,7 @@ export class Store {
         // Note: all these cases fall through
         switch (oldVersion) {
           case 0:
-            db.createObjectStore("sites", {autoIncrement: true});
+            db.createObjectStore("sites", {autoIncrement: true, keyPath: "id"});
         }
       }
     });

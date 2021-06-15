@@ -2,7 +2,7 @@ const _ = require('lodash');
 const webpack = require('webpack');
 
 const defaults = {
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   resolve: {
     alias: {
       core: `${__dirname}/core`,

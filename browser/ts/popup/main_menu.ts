@@ -1,23 +1,25 @@
-import {Component} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {Background} from '../background/api';
+import { Background } from '../background/api';
 
 @Component({
   selector: 'main-menu',
   templateUrl: 'ts/popup/main_menu.html',
   styleUrls: ['ts/popup/main_menu.css']
 })
-export class MainMenuComponent {
+export class MainMenuComponent implements OnInit {
   browser = browser;
 
-  isMasterPasswordValid: boolean;
-  masterPasswordValidTime: number;
+  constructor(@Inject(Router) private router: Router) {}
 
   ngOnInit(): void {
     Background.getMasterPasswordTime()
       .then((resp) => {
-        this.isMasterPasswordValid = resp.isCached;
-        this.masterPasswordValidTime = resp.timeRemaining;
+        if (!resp.isCached) {
+          // If you don't have a valid master password, redirect immediately to the login page.
+          this.router.navigate(['login']);
+        }
       });
   }
 

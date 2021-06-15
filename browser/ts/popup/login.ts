@@ -4,11 +4,11 @@ import {PasswordGenerator, PasswordGenerateOptions} from 'core/password_generato
 import {Background} from '../background/api';
 
 @Component({
-  selector: 'enter-master-password',
-  templateUrl: 'ts/popup/enter_master_password.html',
-  styleUrls: ['ts/popup/enter_master_password.css']
+  selector: 'login',
+  templateUrl: 'ts/popup/login.html',
+  styleUrls: ['ts/popup/login.css']
 })
-export class EnterMasterPasswordComponent {
+export class LoginComponent {
   browser = browser;
 
   constructor() {
