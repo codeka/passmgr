@@ -2,7 +2,7 @@ import { Store } from "core/db/store";
 import { FormField, SiteInfo, UnencryptedInMemorySite } from "core/db/model";
 import { MasterPasswordManager } from "./master_password_manager";
 
-import { MasterPasswordTimeResponse, DeriveMasterKeyRequest } from "./api";
+import { InitResponse, DeriveMasterKeyRequest } from "./api";
 
 const masterPasswordManager = new MasterPasswordManager();
 
@@ -15,13 +15,12 @@ const masterPasswordManager = new MasterPasswordManager();
  */
 function onMessage(
     request: any,
-    sender: browser.runtime.MessageSender,
-    sendResponse: (response: object) => void): Promise<any> {
+    sender: chrome.runtime.MessageSender): Promise<any> {
   console.log("got message: " + JSON.stringify(request));
   if (sender.tab && request.id == "checkForLoginForm") {
     return checkForLoginForm(sender, request);
-  } else if (request.id == "getMasterPasswordTime") {
-    return getMasterPasswordTime(sender);
+  } else if (request.id == "init") {
+    return init(sender);
   } else if (request.id == "deriveMasterKey") {
     return deriveMasterKey(sender, request);
   } else {
@@ -41,7 +40,7 @@ class CheckForLoginFormResponse {
 }
 
 function checkForLoginForm(
-    sender: browser.runtime.MessageSender,
+    sender: chrome.runtime.MessageSender,
     request: CheckForLoginFormRequest): Promise<CheckForLoginFormResponse> {
   // TODO: this is a bit inefficient...
   const store = new Store();
@@ -56,17 +55,20 @@ function checkForLoginForm(
       });
 }
 
-function getMasterPasswordTime(
-  sender: browser.runtime.MessageSender) : Promise<MasterPasswordTimeResponse> {
-  // TODO: implement this!
-  return Promise.resolve({
-      isCached: false,
-      timeRemaining: 0
+function init(
+  sender: chrome.runtime.MessageSender) : Promise<InitResponse> {
+  // TODO: check if we're already logged in, etc.
+
+  // Check whether the file exists or not. If it exists, we just need to decrypt it.
+  return new Promise((resolve) => {
+    chrome.storage.local.get('db', (data) => {
+      resolve({isCreated: !!data["isCreated"]});
     });
+  });
 }
 
 function deriveMasterKey(
-    sender: browser.runtime.MessageSender, request: DeriveMasterKeyRequest): Promise<CryptoKey> {
+    sender: chrome.runtime.MessageSender, request: DeriveMasterKeyRequest): Promise<CryptoKey> {
   console.log("deriving master key...");
   return masterPasswordManager.deriveKey(request.masterPassword, request.validForSeconds);
 }
@@ -107,7 +109,7 @@ function isFieldMatch(formField: FormField, siteField: FormField): boolean {
 }
 
 function populateFormFields(
-    sender: browser.runtime.MessageSender,
+    sender: chrome.runtime.MessageSender,
     request: CheckForLoginFormRequest,
     site: SiteInfo): Promise<CheckForLoginFormResponse> {
   // TODO: decrypt fields
@@ -131,7 +133,9 @@ function populateFormFields(
 
 export class Background {
   static init(): void {
-    console.log("init");
-    browser.runtime.onMessage.addListener(onMessage);
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      onMessage(request, sender).then(sendResponse);
+      return true;
+    });
   }
 }

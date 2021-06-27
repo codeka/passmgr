@@ -38,6 +38,11 @@
     "description": "The title of the 'generate password' page in the popup."
   },
 
+  "setup_title": {
+    "message": "Codeka Password Manager",
+    "description": "Title of the initial page you get when you first start."
+  },
+
   "master_password_title": {
     "message": "Enter master password",
     "description": "Title of the prompt for entering your master password."

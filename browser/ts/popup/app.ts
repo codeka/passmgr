@@ -6,5 +6,4 @@ import {Component} from '@angular/core';
   styleUrls: ['ts/popup/app.css']
 })
 export class AppComponent {
-  browser = browser;
 }

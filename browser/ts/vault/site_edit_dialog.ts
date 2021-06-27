@@ -11,8 +11,6 @@ import {UnencryptedInMemorySite, SiteInfo} from 'core/db/model';
   styleUrls: ['ts/vault/site_edit_dialog.css']
 })
 export class SiteEditDialogComponent {
-  browser = browser;
-
   // Whether we should be showing or hiding the password.
   hidePassword = true;
 

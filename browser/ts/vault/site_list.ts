@@ -28,7 +28,6 @@ class SiteListDataSource extends DataSource<SiteInfo> {
   styleUrls: ['ts/vault/site_list.css']
 })
 export class SiteListComponent {
-  browser = browser;
   sites: SiteListDataSource;
 
   constructor(

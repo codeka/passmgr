@@ -6,8 +6,6 @@ import {Component} from '@angular/core';
   //styleUrls: ['ts/vault/site_list.css']
 })
 export class SettingsComponent {
-  browser = browser;
-
   constructor() {
   }
 }

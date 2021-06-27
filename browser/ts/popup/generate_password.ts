@@ -8,8 +8,6 @@ import {PasswordGenerator, PasswordGenerateOptions} from 'core/password_generato
   styleUrls: ['ts/popup/generate_password.css']
 })
 export class GeneratePasswordComponent {
-  browser = browser;
-
   constructor() {
   }
 

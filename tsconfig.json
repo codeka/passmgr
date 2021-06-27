@@ -12,6 +12,10 @@
     "typeRoots": [
       "node_modules/@types",
       "node_modules/web-ext-types"
+    ],
+    "types": [
+      "@types/chrome",
+      "@types/filesystem"
     ]
   },
   "exclude": [

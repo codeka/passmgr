@@ -6,8 +6,6 @@ import {Component} from '@angular/core';
   styleUrls: ['ts/vault/app.css']
 })
 export class AppComponent {
-  browser = browser;
-
   constructor() {
   }
 }

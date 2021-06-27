@@ -1,14 +1,16 @@
 import {Component} from '@angular/core';
+import {MatAccordion} from '@angular/material/expansion';
 
-import {PasswordGenerator, PasswordGenerateOptions} from 'core/password_generator';
 import {Background} from '../background/api';
 
 @Component({
-  selector: 'login',
-  templateUrl: 'ts/popup/login.html',
-  styleUrls: ['ts/popup/login.css']
+  selector: 'setup',
+  templateUrl: 'ts/popup/setup.html',
+  styleUrls: ['ts/popup/setup.css']
 })
-export class LoginComponent {
+export class SetupComponent {
+  browser = chrome
+
   constructor() {
   }
 
@@ -26,5 +28,5 @@ export class LoginComponent {
         // TODO: handle errors.
         console.log('an error occured: ' + err);
       });
-  }
+  } 
 }

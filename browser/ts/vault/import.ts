@@ -67,8 +67,6 @@ class BitWardenJsonImporter implements Importer {
   styleUrls: ['ts/vault/import.css']
 })
 export class ImportComponent {
-  browser = browser;
-
   progress: number = 0;
   progressMode: string = "indeterminate";
   fileName: string = "";
@@ -110,7 +108,7 @@ export class ImportComponent {
         },
         (err) => {
           this.element.nativeElement.querySelector("mat-progress-bar").style.display = "none";
-          this.snackBar.open(err, browser.i18n.getMessage("close"));
+          this.snackBar.open(err, chrome.i18n.getMessage("close"));
         }
       )
     };
